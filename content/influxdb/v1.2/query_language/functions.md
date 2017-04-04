@@ -7,34 +7,50 @@ menu:
     parent: query_language
 ---
 
-Use InfluxQL functions to aggregate, select, transform, and predict data.
+Aggregate, select, transform, and predict data with InfluxQL functions.
 
-| Aggregations | Selectors | Transformations | Predictors |
-|--------------|-----------|-----------------|------------|
-| [COUNT()](#count)        | [BOTTOM()](#bottom)         | [CEILING()](#ceiling)                                 | [HOLT_WINTERS()](#holt-winters)  
-| [DISTINCT()](#distinct)  | [FIRST()](#first)           | [CUMULATIVE_SUM()](#cumulative-sum)                     |
-| [INTEGRAL()](#integral)  | [LAST()](#last)             | [DERIVATIVE()](#derivative)                           |
-| [MEAN()](#mean)          | [MAX()](#max)               | [DIFFERENCE()](#difference)                           |
-| [MEDIAN()](#median)      | [MIN()](#min)               | [ELAPSED()](#elapsed)                                 |
-| [MODE()](#mode)          | [PERCENTILE()](#percentile) | [FLOOR()](#floor)                                     |
-| [SPREAD()](#spread)      | [SAMPLE()](#sample)         | [HISTOGRAM()](#histogram)                             |
-| [STDDEV()](#stddev)      | [TOP()](#top)               | [MOVING_AVERAGE()](#moving-average)                   |
-| [SUM()](#sum)            |                             | [NON_NEGATIVE_DERIVATIVE()](#non-negative-derivative) |
+#### Content
 
-
-Useful InfluxQL for functions:  
-
-* [Include multiple functions in a single query](/influxdb/v1.2/query_language/functions/#include-multiple-functions-in-a-single-query)
-* [Change the value reported for intervals with no data with `fill()` ](/influxdb/v1.2/query_language/functions/#change-the-value-reported-for-intervals-with-no-data-with-fill)
-* [Rename the output column's title with `AS`](/influxdb/v1.2/query_language/functions/#rename-the-output-column-s-title-with-as)
-
-The examples below query data using [InfluxDB's Command Line Interface (CLI)](/influxdb/v1.2/tools/shell/).
-See the [Querying Data](/influxdb/v1.2/guides/querying_data/) guide for how to query data directly using the HTTP API.
-
-**Sample data**
-
-The examples in this document use the same sample data as the [Data Exploration](/influxdb/v1.2/query_language/data_exploration/) page.
-The data are described and are available for download on the [Sample Data](/influxdb/v1.2/query_language/data_download/) page.
+* [Aggregations](#aggregations)
+    * [COUNT()](#count)
+    * [DISTINCT()](#distinct)
+    * [INTEGRAL()](#integral)
+    * [MEAN()](#mean)
+    * [MEDIAN()](#median)
+    * [MODE()](#mode)
+    * [SPREAD()](#spread)
+    * [STDDEV()](#stddev)
+    * [SUM()](#sum)
+    * [Common Issues with Aggregations](#common-issues-with-aggregations)
+* [Selectors](#selectors)
+    * [BOTTOM()](#bottom)        
+    * [FIRST()](#first)          
+    * [LAST()](#last)            
+    * [MAX()](#max)              
+    * [MIN()](#min)              
+    * [PERCENTILE()](#percentile)
+    * [SAMPLE()](#sample)        
+    * [TOP()](#top)
+    * [Common Issues with Selectors](#common-issues-with-selectors)          
+* [Transformations](#Transformations)
+    * [CEILING()](#ceiling)  
+    * [CUMULATIVE_SUM()](#cumulative-sum)                    
+    * [DERIVATIVE()](#derivative)                          
+    * [DIFFERENCE()](#difference)                          
+    * [ELAPSED()](#elapsed)                                
+    * [FLOOR()](#floor)                                    
+    * [HISTOGRAM()](#histogram)                            
+    * [MOVING_AVERAGE()](#moving-average)                  
+    * [NON_NEGATIVE_DERIVATIVE()](#non-negative-derivative)
+    * [Common Issues with Transformations](#common-issues-with-transformations)    
+* [Predictors](#predictors)
+    * [HOLT_WINTERS()](#holt-winters)
+* [Other](#other)
+    * [Sample Data](#sample-data)
+    * [General Syntax for Functions](#general-syntax-for-functions)
+        * [Multiple function specification](#multiple-function-specification)
+        * [`fill()`](#fill)
+        * [`AS`](#as)
 
 # Aggregations
 
@@ -1834,3 +1850,7 @@ SELECT holt_winters_with_fit(first(water_level),10,4) FROM h2o_feet where locati
 And that's it!
 We've successfully predicted water levels in Santa Monica between August 28,
 2015 at 04:32 and August 28, 2015 at 13:23.
+
+# Other
+### Sample Data
+The data used in this document are available for download on the [Sample Data](/influxdb/v1.2/query_language/data_download/) page.
